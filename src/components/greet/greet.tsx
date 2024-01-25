@@ -1,11 +1,8 @@
 import { FC } from "react";
-
-interface IGreetProps {
-  name?: string;
-}
+import { IGreetProps } from "../greet.types";
 
 const Greet: FC<IGreetProps> = ({ name }) => {
-  return <div>Hello {name}</div>;
+  return <div>Hello {name ? name : "Guest"} </div>;
 };
 
 export default Greet;
