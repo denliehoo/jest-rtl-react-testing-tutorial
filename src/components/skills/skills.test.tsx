@@ -38,5 +38,27 @@ describe("Skills", () => {
     expect(startLearningButton).not.toBeInTheDocument();
   });
 
+  /** findBy*/
+  // For example, when we do a useEffect and fetch data from a server. Initially, no data is present. But after awhile, once data has been fetched, the element should be rendered.
+  // getBy and queryBy cannot be used in this case Instead,
+  // findBy is useful for appearing/disappearing data.
+
+  // Here, since we have set a useEffect that updates logIn to true after 1000, which, causes the button to change to the startlearningButton to be rendered instead of the Login button.
+  // if we wait 2000ms, we can be sure that the start learning button should be rendered instead of to Login button
+  test("Start Learning button is eventually displayed", async () => {
+    render(<Skills skills={skills} />);
+    const startLearningButton = await screen.findByRole(
+      "button",
+      {
+        name: "Start learning",
+      },
+      // by default, the value in which it timeout (as in it stops waiting for something to be rendered/disappear) is 1000s. If we want, we can increase the timeout
+      {
+        timeout: 2000,
+      }
+    );
+    expect(startLearningButton).toBeInTheDocument();
+  });
+
   //
 });
