@@ -58,6 +58,14 @@ describe("Application", () => {
     const paragraphElement = screen.getByText("All fields are mandatory");
     expect(paragraphElement).toBeInTheDocument();
 
+    const paragraphElement2 = screen.getByText(/All fields are/i);
+    expect(paragraphElement2).toBeInTheDocument();
+
+    const paragraphElement3 = screen.getByText("All fields are", {
+      exact: false,
+    });
+    expect(paragraphElement3).toBeInTheDocument();
+
     /** getByDisplayValue */
     // searches the value if e.g. an input field
     const nameElement4 = screen.getByDisplayValue("NameHere");
